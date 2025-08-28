@@ -5,7 +5,7 @@ cd $CI_PRIMARY_REPOSITORY_PATH
 
 if [ -f "ios/setup_xcodecloud.sh" ]; then
     echo "Found pre-xcodebuild script. Executing."
-    ./setup_xcodecloud.sh
+    ./ios/setup_xcodecloud.sh
 else
     echo "No pre-xcodebuild script. Skipping."
 fi
