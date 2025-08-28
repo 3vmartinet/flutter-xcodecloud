@@ -1,10 +1,14 @@
 #! /bin/zsh
 
 # The default execution directory of this script is the ci_scripts directory.
-cd $CI_PRIMARY_REPOSITORY_PATH  # change working directory to the root of your cloned repo.
+cd $CI_PRIMARY_REPOSITORY_PATH
 
-# Install Flutter using git.
-git clone https://github.com/flutter/flutter.git --depth 1 -b stable $HOME/flutter
+if [ -f "ios/setup_flutter_xcodecloud.sh" ]; then
+    echo "Found pre-xcodebuild script. Executing."
+else
+    echo "No pre-xcodebuild script. Skipping."
+fi
+
 export PATH="$PATH:$HOME/flutter/bin"
 
 flutter build ios
