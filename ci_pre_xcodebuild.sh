@@ -10,7 +10,3 @@ else
     echo "No pre-xcodebuild script. Skipping."
 fi
 
-export PATH="$PATH:$HOME/flutter/bin"
-
-flutter build ios
-
