@@ -1,5 +1,9 @@
 #! /bin/zsh
 
+# Set the -e flag to stop running the script in case a command returns
+# a nonzero exit code.
+set -e
+
 # The default execution directory of this script is the ci_scripts directory.
 cd $CI_PRIMARY_REPOSITORY_PATH  # change working directory to the root of your cloned repo.
 
@@ -12,6 +16,9 @@ flutter precache --ios
 
 # Install Flutter dependencies.
 flutter pub get
+
+# Activate FlutterFire
+dart pub global activate flutterfire_cli
 
 # Install CocoaPods using Homebrew.
 HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
