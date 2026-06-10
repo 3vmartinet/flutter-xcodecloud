@@ -1,33 +1,25 @@
 #! /bin/zsh
 
-# Set the -e flag to stop running the script in case a command returns
-# a nonzero exit code.
 set -e
 
-# The default execution directory of this script is the ci_scripts directory.
+
 cd $CI_PRIMARY_REPOSITORY_PATH  # change working directory to the root of your cloned repo.
 
-# Install Flutter using git.
 git clone https://github.com/flutter/flutter.git --depth 1 -b stable $HOME/flutter
 export PATH="$PATH:$HOME/flutter/bin"
 
-# Install Flutter artifacts for iOS (--ios), or macOS (--macos) platforms.
 flutter precache --ios
-
-# Install Flutter dependencies.
 flutter pub get
-
-# Activate FlutterFire
 dart pub global activate flutterfire_cli
 
-# Install CocoaPods using Homebrew.
-HOMEBREW_NO_AUTO_UPDATE=1 # disable homebrew's automatic updates.
+HOMEBREW_NO_AUTO_UPDATE=1
 brew install cocoapods
+brew install cmake # e.g : flutter_soloud
 
 # Install CocoaPods dependencies.
 cd ios
 pod deintegrate
-pod install # run `pod install` in the `ios` directory.
+pod install
 
 exit 0
 
