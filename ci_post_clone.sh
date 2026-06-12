@@ -12,6 +12,9 @@ flutter precache --ios
 flutter pub get
 dart pub global activate flutterfire_cli
 
+# Direct Flutter to generate the native configurations and plugin symlinks
+flutter build ios --config-only --no-codesign
+
 HOMEBREW_NO_AUTO_UPDATE=1
 brew install cocoapods
 brew install cmake # e.g : flutter_soloud
@@ -19,7 +22,7 @@ brew install cmake # e.g : flutter_soloud
 # Install CocoaPods dependencies.
 cd ios
 pod deintegrate
-pod install
+pod install --repo-update
 
 exit 0
 
